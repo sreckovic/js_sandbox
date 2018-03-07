@@ -163,28 +163,26 @@ body {
   .text {
     margin-bottom: 5px;
 
-    .left {
-      float: left;
-    }
-
     .right {
       float: right;
     }
   }
 
+  .line,
+  .fill {
+    @include border-radius(3px);
+  }
+
   .line {
     background-color: $backgroundColor;
+  }
 
-    @include border-radius(3px);
+  .fill {
+    margin: 0;
+    background-color: $blueDark;
+    width: 0%;
+    height: 12px;
 
-    .fill {
-      margin: 0;
-      background-color: $blueDark;
-      width: 0%;
-      height: 12px;
-
-      @include border-radius(3px);
-      @include transition(all, 0.3s);
-    }
+    @include transition(all, 0.3s);
   }
 }

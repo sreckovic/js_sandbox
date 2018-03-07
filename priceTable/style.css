@@ -111,26 +111,23 @@ body {
   margin-bottom: 20px; }
   .data .text {
     margin-bottom: 5px; }
-    .data .text .left {
-      float: left; }
     .data .text .right {
       float: right; }
-  .data .line {
-    background-color: #e9edef;
+  .data .line,
+  .data .fill {
     -webkit-border-radius: 3px;
     border-radius: 3px;
     background-clip: padding-box; }
-    .data .line .fill {
-      margin: 0;
-      background-color: #27a6d2;
-      width: 0%;
-      height: 12px;
-      -webkit-border-radius: 3px;
-      border-radius: 3px;
-      background-clip: padding-box;
-      -webkit-transition: all 0.3s ease-in-out;
-      -moz-transition: all 0.3s ease-in-out;
-      -o-transition: all 0.3s ease-in-out;
-      transition: all 0.3s ease-in-out; }
+  .data .line {
+    background-color: #e9edef; }
+  .data .fill {
+    margin: 0;
+    background-color: #27a6d2;
+    width: 0%;
+    height: 12px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -moz-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out; }
 
 /*# sourceMappingURL=style.css.map */
