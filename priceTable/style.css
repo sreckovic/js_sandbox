@@ -65,11 +65,11 @@ body {
 .plan,
 .datas {
   background-color: #fff;
-  -webkit-box-shadow: 0 1px 4px #ccc;
-  -moz-box-shadow: 0 1px 4px #ccc;
-  box-shadow: 0 1px 4px #ccc;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
   background-clip: padding-box; }
 
 .plan {
@@ -81,7 +81,7 @@ body {
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out; }
   .plan.selected {
-    transform: scale(1.1); }
+    transform: scale(1.2); }
     .plan.selected .title {
       background-color: #27a6d2; }
   .plan .title {
@@ -117,13 +117,20 @@ body {
       float: right; }
   .data .line {
     background-color: #e9edef;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
     background-clip: padding-box; }
     .data .line .fill {
       margin: 0;
       background-color: #27a6d2;
       width: 0%;
-      height: 12px; }
+      height: 12px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      background-clip: padding-box;
+      -webkit-transition: all 0.3s ease-in-out;
+      -moz-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out; }
 
 /*# sourceMappingURL=style.css.map */
