@@ -1,0 +1,187 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600,700);
+
+$blueLight: #7dd0ed;
+$blueDark: #27a6d2;
+$titleColor: #fff;
+$textColor: #5e5e5e;
+$transition: all 0.3s ease-in-out;
+$backgroundColor: #e9edef;
+
+@mixin box-sizing($box-model) {
+  -webkit-box-sizing: $box-model;
+  -moz-box-sizing: $box-model;
+  box-sizing: $box-model;
+}
+
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+  border-radius: $radius;
+  background-clip: padding-box;
+}
+
+@mixin box-shadow(
+  $horizontal: 0px,
+  $vertical: 1px,
+  $blur: 2px,
+  $color: rgba(0, 0, 0, 0.06)
+) {
+  -webkit-box-shadow: $horizontal $vertical $blur $color;
+  -moz-box-shadow: $horizontal $vertical $blur $color;
+  box-shadow: $horizontal $vertical $blur $color;
+}
+
+@mixin transition($type, $speed) {
+  -webkit-transition: $type $speed ease-in-out;
+  -moz-transition: $type $speed ease-in-out;
+  -o-transition: $type $speed ease-in-out;
+  transition: $type $speed ease-in-out;
+}
+
+/* natural box layout model to all elements */
+*,
+*:before,
+*:after {
+  @include box-sizing(border-box);
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+ul,
+li,
+form,
+div,
+p,
+ol,
+button,
+hr,
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+article,
+figure,
+footer,
+header,
+nav,
+section,
+details,
+summary {
+  display: block;
+}
+
+.clearfix:after {
+  content: '.';
+  visibility: hidden;
+  display: block;
+  height: 0;
+  clear: both;
+}
+
+div {
+  width: auto;
+  height: auto;
+  margin: 0 auto;
+}
+
+body {
+  font-family: 'Open Sans';
+  font-size: 14px;
+  font-weight: 400;
+  color: $textColor;
+  background-color: $backgroundColor;
+}
+
+.frame {
+  margin: 5%;
+}
+
+.plans {
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.plan,
+.datas {
+  background-color: #fff;
+  @include box-shadow(0, 1px, 4px, #ccc);
+  @include border-radius(5px);
+}
+
+.plan {
+  float: left;
+  width: 31.33%;
+  margin: 1%;
+
+  @include transition(all, 0.3s);
+
+  &.selected {
+    transform: scale(1.1);
+
+    .title {
+      background-color: $blueDark;
+    }
+  }
+
+  .title {
+    color: $titleColor;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    background-color: $blueLight;
+    padding: 10px 20px;
+
+    @include border-radius(5px);
+  }
+
+  .price {
+    font-size: 36px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+    padding: 20px 10px;
+
+    span {
+      display: block;
+      font-size: 12px;
+    }
+  }
+}
+
+.datas {
+  padding: 20px;
+}
+
+.data {
+  margin-bottom: 20px;
+
+  .text {
+    margin-bottom: 5px;
+
+    .left {
+      float: left;
+    }
+
+    .right {
+      float: right;
+    }
+  }
+
+  .line {
+    background-color: $backgroundColor;
+
+    @include border-radius(5px);
+
+    .fill {
+      margin: 0;
+      background-color: $blueDark;
+      width: 0%;
+      height: 12px;
+    }
+  }
+}
