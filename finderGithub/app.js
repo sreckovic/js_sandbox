@@ -1,5 +1,6 @@
 // Init GitHub
 const github = new Github();
+
 // Init UI
 const ui = new UI();
 
@@ -12,7 +13,6 @@ searchUser.addEventListener('keyup', e => {
   const userText = e.target.value;
 
   if (userText != '') {
-    //console.log(userText);
     // Make http call
     github.getUser(userText).then(data => {
       if (data.profile.message === 'Not Found') {
@@ -23,9 +23,13 @@ searchUser.addEventListener('keyup', e => {
       } else {
         // Show profile
         ui.showProfile(data.profile);
-        //console.log(data);
+        // Clear alert
+        ui.clearAlert();
       }
     });
+    // .catch(err => {
+    //   console.log(err);
+    // });
   } else {
     // Clear profile
     ui.clearProfile();
