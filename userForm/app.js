@@ -12,28 +12,44 @@ document.getElementById('phone').addEventListener('blur', () => {
 });
 
 function validate(type) {
-  let val = document.getElementById(type);
+  let field = document.getElementById(type);
 
   switch (type) {
     case 'name':
-      const name = document.getElementById('name');
-      console.log(name.value);
-      const re = /^[a-zA-z]{2,10}$/;
+      let reName = /^[a-zA-z]{2,10}$/;
 
-      if (!re.test(name.value)) {
-        name.classList.add('is-invalid');
+      if (!reName.test(field.value)) {
+        field.classList.add('is-invalid');
       } else {
-        name.classList.remove('is-invalid');
+        field.classList.remove('is-invalid');
       }
       break;
     case 'zip':
-      console.log(val.value);
+      let reZip = /^[0-9]{5}(-[0-9]{4})?$/;
+
+      if (!reZip.test(field.value)) {
+        field.classList.add('is-invalid');
+      } else {
+        field.classList.remove('is-invalid');
+      }
       break;
     case 'email':
-      console.log(val.value);
+      let reEmail = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,10})$/;
+
+      if (!reEmail.test(field.value)) {
+        field.classList.add('is-invalid');
+      } else {
+        field.classList.remove('is-invalid');
+      }
       break;
     case 'phone':
-      console.log(val.value);
+      let rePhone = /^\(?\d{3}\)?[-. ]?\d{3}[-. ]?\d{4}$/;
+
+      if (!rePhone.test(field.value)) {
+        field.classList.add('is-invalid');
+      } else {
+        field.classList.remove('is-invalid');
+      }
       break;
     default:
       break;
