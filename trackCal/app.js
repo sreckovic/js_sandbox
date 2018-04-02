@@ -21,6 +21,9 @@ const itemCtrl = (function() {
   };
 
   return {
+    getItems: function() {
+      return state.items;
+    },
     logData: function() {
       return state;
     }
@@ -29,7 +32,26 @@ const itemCtrl = (function() {
 
 // UI Ctrl
 const uiCtrl = (function() {
-  return {};
+  const uiSelectors = {
+    itemList: '#item-list'
+  };
+  return {
+    populateItemList: function(items) {
+      let html = '';
+      items.forEach(function(item) {
+        html += `
+          <li id="item-${item.id}" class="collection-item">
+            <strong>${item.name}:</strong>
+            <em>${item.calories} Calories</em>
+            <a href="#" class="secondary-content">
+              <i class="edit-item fa fa-pencil-alt"></i>
+            </a>
+          </li>
+        `;
+        document.querySelector(uiSelectors.itemList).innerHTML = html;
+      });
+    }
+  };
 })();
 
 // App Ctrl
@@ -38,6 +60,12 @@ const appCtrl = (function(itemCtrl, uiCtrl) {
   return {
     init: function() {
       console.log('Init app');
+      // Fetch items from state
+      const items = itemCtrl.getItems();
+
+      // Populate list with items
+      console.log(items);
+      uiCtrl.populateItemList(items);
     }
   };
 })(itemCtrl, uiCtrl);
