@@ -24,6 +24,25 @@ const itemCtrl = (function() {
     getItems: function() {
       return state.items;
     },
+    addItem: function(name, calories) {
+      let id;
+      // Create ID
+      if (state.items.length > 0) {
+        id = state.items[state.items.length - 1].id + 1;
+      } else {
+        id = 0;
+      }
+
+      // Calories to number
+      calories = parseInt(calories);
+
+      // Create new item
+      newItem = new item(id, name, calories);
+
+      state.items.push(newItem);
+
+      return newItem;
+    },
     logData: function() {
       return state;
     }
@@ -86,8 +105,6 @@ const appCtrl = (function(itemCtrl, uiCtrl) {
 
     // Check for name and calorie input
     if (input.name !== '' && input.calories !== '') {
-      console.log(input);
-
       // Add item
       const newItem = itemCtrl.addItem(input.name, input.calories);
     }
