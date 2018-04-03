@@ -79,6 +79,9 @@ const uiCtrl = (function() {
         calories: document.querySelector(uiSelectors.itemCaloriesInput).value
       };
     },
+    addListItem: function(item) {
+      // Create item element
+    },
     getSelectors: function() {
       return uiSelectors;
     }
@@ -107,6 +110,8 @@ const appCtrl = (function(itemCtrl, uiCtrl) {
     if (input.name !== '' && input.calories !== '') {
       // Add item
       const newItem = itemCtrl.addItem(input.name, input.calories);
+      // Add item to UI list
+      uiCtrl.addListItem(newItem);
     }
     e.preventDefault();
   };
