@@ -41,6 +41,19 @@ const itemCtrl = (function() {
       state.items.push(newItem);
       return newItem;
     },
+    getItemById: function(id) {
+      let found = null;
+      state.items.forEach(function(item) {
+        if (item.id === id) {
+          found = item;
+        }
+      });
+
+      return found;
+    },
+    setCurrentItem: function(item) {
+      state.currentItem = item;
+    },
     getTotalCalories: function() {
       let total = 0;
       state.items.forEach(function(item) {
@@ -62,6 +75,9 @@ const uiCtrl = (function() {
   const uiSelectors = {
     itemList: '#item-list',
     addBtn: '.add-btn',
+    updateBtn: '.update-btn',
+    deleteBtn: '.delete-btn',
+    backBtn: '.back-btn',
     itemNameInput: '#item-name',
     itemCaloriesInput: '#item-calories',
     totalCalories: '.total-calories'
@@ -120,6 +136,13 @@ const uiCtrl = (function() {
         uiSelectors.totalCalories
       ).textContent = totalCalories;
     },
+    clearEditState: function() {
+      uiCtrl.clearInput();
+      document.querySelector(uiSelectors.updateBtn).style.display = 'none';
+      document.querySelector(uiSelectors.deleteBtn).style.display = 'none';
+      document.querySelector(uiSelectors.backBtn).style.display = 'none';
+      document.querySelector(uiSelectors.addBtn).style.display = 'inline';
+    },
     getSelectors: function() {
       return uiSelectors;
     }
@@ -137,6 +160,11 @@ const appCtrl = (function(itemCtrl, uiCtrl) {
     document
       .querySelector(uiSelectors.addBtn)
       .addEventListener('click', itemAddSubmit);
+
+    // Edit icon click event
+    document
+      .querySelector(uiSelectors.itemList)
+      .addEventListener('click', itemUpdateSubmit);
   };
 
   // Add item submit
@@ -163,10 +191,34 @@ const appCtrl = (function(itemCtrl, uiCtrl) {
     }
     e.preventDefault();
   };
+
+  // Update item submit
+  const itemUpdateSubmit = function(e) {
+    if (e.target.classList.contains('edit-item')) {
+      // Get list item id
+      const listId = e.target.parentNode.parentNode.id;
+      // Break into an array
+      const listIdArr = listId.split('-');
+      const id = parseInt(listIdArr[1]);
+
+      // Get item
+      const itemToEdit = itemCtrl.getItemById(id);
+
+      // Set current item
+      itemCtrl.setCurrentItem(itemToEdit);
+
+      // Add item to form
+      uiCtrl.addItemToForm();
+    }
+    e.preventDefault();
+  };
+
   // Public methods
   return {
     init: function() {
-      console.log('Init app');
+      // Clear edit state / set init state of ui
+      uiCtrl.clearEditState();
+
       // Fetch items from state
       const items = itemCtrl.getItems();
 
