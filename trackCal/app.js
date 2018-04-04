@@ -80,7 +80,25 @@ const uiCtrl = (function() {
       };
     },
     addListItem: function(item) {
-      // Create item element
+      // Create li element
+      const li = document.createElement('li');
+      li.className = 'collection-item';
+      li.id = `item-${item.id}`;
+      li.innerHTML = `
+        <strong>${item.name}:</strong>
+        <em>${item.calories} Calories</em>
+        <a href="#" class="secondary-content">
+          <i class="edit-item fa fa-pencil-alt"></i>
+        </a>
+      `;
+
+      document
+        .querySelector(uiSelectors.itemList)
+        .insertAdjacentElement('beforeend', li);
+    },
+    clearInput: function() {
+      document.querySelector(uiSelectors.itemNameInput).value = '';
+      document.querySelector(uiSelectors.itemCaloriesInput).value = '';
     },
     getSelectors: function() {
       return uiSelectors;
@@ -110,8 +128,12 @@ const appCtrl = (function(itemCtrl, uiCtrl) {
     if (input.name !== '' && input.calories !== '') {
       // Add item
       const newItem = itemCtrl.addItem(input.name, input.calories);
+
       // Add item to UI list
       uiCtrl.addListItem(newItem);
+
+      // Clear fields
+      uiCtrl.clearInput();
     }
     e.preventDefault();
   };
