@@ -47,8 +47,34 @@ function deletePost(e) {
     if (confirm('Are you sure?')) {
       http
         .delete(`http://localhost:3000/posts/${id}`)
-        .then()
-        .catch();
+        .then(data => {
+          ui.showAlert('Post removed', 'alert alert-success');
+          getPosts();
+        })
+        .catch(err => console.log(err));
     }
   }
+
+  e.preventDefault();
+}
+
+function enableEdit(e) {
+  if (e.target.parentElement.classList.contains('edit')) {
+    const id = e.target.parentElement.dataset.id;
+    const body = e.target.parentElement.previousElementSibling.textContent;
+    const title =
+      e.target.parentElement.previousElementSibling.previousElementSibling
+        .textContent;
+
+    const data = {
+      id,
+      title,
+      body
+    };
+
+    // Fill the form with current post
+    ui.fillForm(data);
+  }
+
+  e.preventDefault();
 }
